@@ -1,7 +1,53 @@
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
+import { useState } from "react";
+import emailjs from '@emailjs/browser';
+import { useToast } from "@/hooks/use-toast";
 
 export const Contact = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      await emailjs.send(
+        'YOUR_SERVICE_ID', // Reemplaza con tu Service ID de EmailJS
+        'YOUR_TEMPLATE_ID', // Reemplaza con tu Template ID de EmailJS
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_email: 'victor117.berrios@gmail.com'
+        },
+        'YOUR_PUBLIC_KEY' // Reemplaza con tu Public Key de EmailJS
+      );
+
+      toast({
+        title: "¡Mensaje enviado con éxito!",
+        description: "Nos pondremos en contacto contigo pronto.",
+        className: "bg-primary text-white",
+      });
+
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      toast({
+        title: "Error al enviar el mensaje",
+        description: "Por favor, intenta nuevamente más tarde.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -23,6 +69,7 @@ export const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="space-y-6"
+            onSubmit={handleSubmit}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -31,8 +78,11 @@ export const Contact = () => {
                 </label>
                 <input
                   type="text"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors"
                   placeholder="Tu nombre"
+                  required
                 />
               </div>
               <div>
@@ -41,8 +91,11 @@ export const Contact = () => {
                 </label>
                 <input
                   type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors"
                   placeholder="tu@email.com"
+                  required
                 />
               </div>
             </div>
@@ -51,17 +104,29 @@ export const Contact = () => {
                 Mensaje
               </label>
               <textarea
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors h-32"
                 placeholder="¿Cómo podemos ayudarte?"
+                required
               />
             </div>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full bg-primary text-white px-8 py-4 rounded-lg font-medium inline-flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:bg-primary-dark transition-colors"
+              className={`w-full bg-primary text-white px-8 py-4 rounded-lg font-medium inline-flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:bg-primary-dark transition-colors ${
+                isLoading ? 'opacity-70 cursor-not-allowed' : ''
+              }`}
+              disabled={isLoading}
             >
-              Enviar mensaje
-              <Send className="w-5 h-5" />
+              {isLoading ? (
+                'Enviando...'
+              ) : (
+                <>
+                  Enviar mensaje
+                  <Send className="w-5 h-5" />
+                </>
+              )}
             </motion.button>
           </motion.form>
         </div>

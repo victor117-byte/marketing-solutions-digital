@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const Hero = () => {
   return (
     <section className="min-h-[90vh] relative flex items-center justify-center bg-gradient-to-br from-primary-light via-white to-white overflow-hidden">
-      {/* Background Image */}
       <div 
         className="absolute inset-0 z-0 opacity-10"
         style={{
@@ -31,22 +31,26 @@ export const Hero = () => {
             Convertimos datos en estrategias efectivas para hacer crecer tu negocio de forma automática y medible
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-primary text-white px-8 py-4 rounded-lg font-medium inline-flex items-center gap-2 shadow-lg shadow-primary/20 hover:bg-primary-dark transition-colors"
-            >
-              Comienza ahora
-              <ChevronRight className="w-5 h-5" />
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white text-secondary-dark px-8 py-4 rounded-lg font-medium inline-flex items-center gap-2 shadow-lg hover:bg-gray-50 transition-colors border border-gray-200"
-            >
-              Ver demostración
-              <ChevronRight className="w-5 h-5" />
-            </motion.button>
+            <Link to="/get-started">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-primary text-white px-8 py-4 rounded-lg font-medium inline-flex items-center gap-2 shadow-lg shadow-primary/20 hover:bg-primary-dark transition-colors"
+              >
+                Comienza ahora
+                <ChevronRight className="w-5 h-5" />
+              </motion.button>
+            </Link>
+            <Link to="/demo">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white text-secondary-dark px-8 py-4 rounded-lg font-medium inline-flex items-center gap-2 shadow-lg hover:bg-gray-50 transition-colors border border-gray-200"
+              >
+                Ver demostración
+                <ChevronRight className="w-5 h-5" />
+              </motion.button>
+            </Link>
           </div>
         </motion.div>
       </div>

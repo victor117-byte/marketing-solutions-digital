@@ -19,15 +19,15 @@ export const Contact = () => {
 
     try {
       await emailjs.send(
-        'YOUR_SERVICE_ID', // Reemplaza con tu Service ID de EmailJS
-        'YOUR_TEMPLATE_ID', // Reemplaza con tu Template ID de EmailJS
+        'service_6u7qd4s',
+        'template_5jt7i7m',
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
           to_email: 'victor117.berrios@gmail.com'
         },
-        'YOUR_PUBLIC_KEY' // Reemplaza con tu Public Key de EmailJS
+        'QZew5ZnaRN9kvRcsB'
       );
 
       toast({

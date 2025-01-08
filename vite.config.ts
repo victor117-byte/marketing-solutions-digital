@@ -11,12 +11,15 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === 'development' &&
-    componentTagger(),
+    mode === 'development' && componentTagger(),
   ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  base: "/marketing-solutions-digital/",  // Cambia esto al nombre de tu repositorio
+  build: {
+    outDir: 'build',  // Aquí definimos que la salida se genere en 'build'
   },
 }));

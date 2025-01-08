@@ -35,7 +35,8 @@ const GetStarted = () => {
             Comienza Tu Transformación Digital
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            En 4 simples pasos, transformaremos tu negocio con soluciones digitales inteligentes
+            En 4 simples pasos, transformaremos tu negocio con soluciones
+            digitales inteligentes
           </p>
         </motion.div>
 
@@ -81,7 +82,13 @@ const GetStarted = () => {
                   </div>
                 ))}
               </div>
-              <Button className="w-full md:w-auto">
+              <Button
+                className="w-full md:w-auto"
+                onClick={() => {
+                  window.location.href =
+                    "https://calendly.com/victor117-berrios/30min";
+                }}
+              >
                 Agenda una consulta gratuita
                 <ArrowRight className="ml-2" />
               </Button>

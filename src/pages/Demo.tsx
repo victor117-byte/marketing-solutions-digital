@@ -4,45 +4,43 @@ import { BarChart, Rocket, Brain } from "lucide-react";
 
 const cases = [
   {
-    title: "Tienda de Ropa Online",
-    before: "Ventas estancadas y alto costo en publicidad",
-    after: "300% más ventas con 50% menos inversión",
-    image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334",
+    title: "Incremento en Ventas Online",
+    description:
+      "Una tienda local aumentó sus ventas en un 150% en 6 meses mediante nuestra estrategia de marketing digital.",
     icon: BarChart,
   },
   {
-    title: "Restaurante Local",
-    before: "Procesos manuales y pérdida de clientes",
-    after: "Automatización total y 200% más reservas",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+    title: "Automatización de Procesos",
+    description:
+      "Implementamos soluciones que redujeron el tiempo de procesamiento de pedidos en un 75%.",
     icon: Rocket,
   },
   {
-    title: "Empresa de Servicios",
-    before: "Decisiones basadas en intuición",
-    after: "Crecimiento del 150% con BI",
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+    title: "Inteligencia de Negocio",
+    description:
+      "Desarrollamos un dashboard que permitió tomar decisiones basadas en datos en tiempo real.",
     icon: Brain,
   },
 ];
 
 const Demo = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-primary/5">
-      <div className="container mx-auto px-4 py-16">
+    <div className="min-h-screen bg-gray-50 py-20">
+      <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium inline-block mb-6">
+          <span className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium inline-block mb-4">
             Casos de Éxito
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-secondary-dark mb-6">
-            Transformaciones Reales
-          </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Descubre cómo hemos ayudado a empresas como la tuya a alcanzar su máximo potencial
+          <h2 className="text-3xl md:text-4xl font-bold text-secondary-dark mb-4">
+            Transformando Negocios con Tecnología
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Descubre cómo hemos ayudado a empresas como la tuya a alcanzar sus objetivos digitales
           </p>
         </motion.div>
 
@@ -51,33 +49,21 @@ const Demo = () => {
             <motion.div
               key={case_.title}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <Card className="h-full overflow-hidden">
-                <div className="relative h-48">
-                  <img
-                    src={case_.image}
-                    alt={case_.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  <case_.icon className="absolute bottom-4 left-4 w-8 h-8 text-white" />
-                </div>
+              <Card className="h-full">
                 <CardHeader>
-                  <CardTitle>{case_.title}</CardTitle>
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <case_.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <CardTitle className="text-xl font-bold text-secondary-dark">
+                    {case_.title}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="text-sm font-medium text-gray-500 mb-1">Antes</h4>
-                      <p className="text-gray-600">{case_.before}</p>
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-medium text-primary mb-1">Después</h4>
-                      <p className="text-gray-800 font-medium">{case_.after}</p>
-                    </div>
-                  </div>
+                  <p className="text-gray-600">{case_.description}</p>
                 </CardContent>
               </Card>
             </motion.div>

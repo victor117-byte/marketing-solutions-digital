@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, BarChart, Rocket, Brain, Target } from "lucide-react";
+import { BarChart, Rocket, Brain } from "lucide-react";
 
 const cases = [
   {
@@ -47,7 +46,7 @@ const Demo = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {cases.map((case_, index) => (
             <motion.div
               key={case_.title}
@@ -83,20 +82,6 @@ const Demo = () => {
               </Card>
             </motion.div>
           ))}
-        </div>
-
-        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center">
-          <Target className="w-12 h-12 text-primary mx-auto mb-6" />
-          <h2 className="text-3xl font-bold text-secondary-dark mb-4">
-            ¿Listo para ser el próximo caso de éxito?
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto mb-8">
-            Únete a las empresas que ya han transformado su negocio con nuestras soluciones digitales
-          </p>
-          <Button size="lg">
-            Ver una demostración personalizada
-            <ArrowRight className="ml-2" />
-          </Button>
         </div>
       </div>
     </div>

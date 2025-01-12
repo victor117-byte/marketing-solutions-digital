@@ -3,7 +3,6 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
@@ -18,8 +17,8 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: "/marketing-solutions-digital/",  // Cambia esto al nombre de tu repositorio
+  base: "/marketing-solutions-digital/",
   build: {
-    outDir: 'build',  // Aquí definimos que la salida se genere en 'build'
+    outDir: 'build',
   },
 }));
